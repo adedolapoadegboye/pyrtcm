@@ -729,8 +729,6 @@ RTCM_DATA_FIELDS = {
     "DF96P": (UINT, 32, 0, "GNSS Multi-Frequency Constellation Mask"),
     "DF106P": (UINT, 32, 0, "Odometer"),
     "DF107P": (UINT, 1, 0, "Reverse"),
-    "DF112P": (UINT, 2, 0, "Config. Block"),
-    "DF113P": (UINT, 5, 0, "Time Best Satellite Type"),
     # IGS SSR data types, used in 4076 messages
     # https://files.igs.org/pub/data/format/igs_ssr_v1.pdf
     "IDF001": (UINT, 3, 1, "IGM/IM Version"),
