@@ -32,6 +32,7 @@ from pyrtcm.rtcmtypes_core import (
 from pyrtcm.rtcmtypes_get import RTCM_PAYLOADS_GET
 from pyrtcm.rtcmtypes_get_igs import RTCM_PAYLOADS_GET_IGS
 from pyrtcm.rtcmtypes_get_msm import RTCM_PAYLOADS_GET_MSM
+from pyrtcm.rtcmtypes_get_quectel import RTCM_PAYLOADS_GET_QUECTEL
 
 BOOL = "B"
 
@@ -323,6 +324,8 @@ class RTCMMessage:
             return RTCM_PAYLOADS_GET_MSM.get(self.identity, None)
         if self.identity[:4] == "4076":  # IGS types
             return RTCM_PAYLOADS_GET_IGS.get(self.identity, None)
+        if self.identity == "999":  # Quectel message type
+            return RTCM_PAYLOADS_GET_QUECTEL.get(self.identity, None)
         return RTCM_PAYLOADS_GET.get(self.identity, None)
 
     def _do_unknown(self):

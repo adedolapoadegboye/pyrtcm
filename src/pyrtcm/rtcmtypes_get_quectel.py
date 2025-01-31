@@ -8,8 +8,6 @@ Created on 29 Jan 2025
 :license: BSD 3-Clause
 """
 
-# from pyrtcm.rtcmtypes_core import NHARMCOEFFC, NHARMCOEFFS
-
 # *************************************************************
 # RTCM3 Quectel Proprietary PAYLOAD DEFINITIONS
 # *************************************************************
@@ -180,9 +178,9 @@ Q999_064 = {
 
 
 # *************************************************************
-# RTCM3 IGS MESSAGE PAYLOAD DEFINITIONS
+# RTCM3 QUECTEL MESSAGE PAYLOAD DEFINITIONS
 # *************************************************************
-RTCM_PAYLOADS_GET_Q999 = {
+RTCM_PAYLOADS_GET_QUECTEL = {
     "Q999_001": {**Q999_001},
     "Q999_002": {**Q999_002},
     "Q999_004": {**Q999_004},
