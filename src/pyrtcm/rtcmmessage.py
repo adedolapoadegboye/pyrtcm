@@ -324,7 +324,7 @@ class RTCMMessage:
             return RTCM_PAYLOADS_GET_MSM.get(self.identity, None)
         if self.identity[:4] == "4076":  # IGS types
             return RTCM_PAYLOADS_GET_IGS.get(self.identity, None)
-        if self.identity == "999":  # Quectel message type
+        if self.identity[:3] == "999":  # Quectel message type
             return RTCM_PAYLOADS_GET_QUECTEL.get(self.identity, None)
         return RTCM_PAYLOADS_GET.get(self.identity, None)
 
@@ -415,6 +415,10 @@ class RTCMMessage:
         if mid == 4076:  # proprietary IGS SSR message type
             subtype = (self._payload[1] & 0x1) << 7 | self._payload[2] >> 1
             mid = f"{mid}_{subtype:03d}"
+
+        elif mid == 999:  # Quectel proprietary message type
+            subtype = ((self._payload[1] & 0x0F) << 4) | (self._payload[2] >> 4)  # Extract full subtype ID
+            mid = f"{mid}_{subtype:03d}"  # Format correctly
 
         return str(mid)
 

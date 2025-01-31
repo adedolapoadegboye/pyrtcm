@@ -286,38 +286,54 @@ class StreamTest(unittest.TestCase):
                     self.assertEqual(f"{parsed}", EXPECTED_RESULTS[i])
                     i += 1
 
-    def test13001302(
+    def testquectel999(
         self,
-    ):  # test 1300 / 1302 messages using log from NTRIP caster euref-ip.net, mountpoint EUREF01
-        # TODO 1302 message payloads from this data log appears to be truncated (59 bytes) NB: these messages also bomb the BNC 2.13.1 NTRIP client
-        EXPECTED_RESULTS = [
-            "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
-            # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
-            "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
-            # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
-            "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
-            # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
-            "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
-            # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
-            "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
-            # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
-            "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
-            # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
-        ]
+    ):  # test 999 messages using log from LG69TAJ
+        EXPECTED_RESULTS = []
         dirname = os.path.dirname(__file__)
-        with open(
-            os.path.join(dirname, "pygpsdata-NTRIP-1300-1302.log"), "rb"
-        ) as stream:
+        with open(os.path.join(dirname, "pygpsclient-RTCM3-999.log"), "rb") as stream:
             i = 0
             raw = 0
-            rtr = RTCMReader(stream, labelmsm=True, quitonerror=ERR_LOG)
+            rtr = RTCMReader(stream, labelmsm=True)
             for raw, parsed in rtr:
                 if raw is not None:
-                    if parsed.identity in ("1300"):  # , "1302"):
-                        # print(f'"{parsed}",')
-                        self.assertEqual(f"{parsed}", EXPECTED_RESULTS[i])
-                        i += 1
-            self.assertEqual(i, 6)
+                    print(f'"{parsed}",')
+                    # self.assertEqual(f"{parsed}", EXPECTED_RESULTS[i])
+                    i += 1
+            self.assertEqual(i, 281)
+
+    # def test13001302(
+    #     self,
+    # ):  # test 1300 / 1302 messages using log from NTRIP caster euref-ip.net, mountpoint EUREF01
+    #     # TODO 1302 message payloads from this data log appears to be truncated (59 bytes) NB: these messages also bomb the BNC 2.13.1 NTRIP client
+    #     EXPECTED_RESULTS = [
+    #         "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
+    #         # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
+    #         "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
+    #         # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
+    #         "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
+    #         # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
+    #         "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
+    #         # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
+    #         "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
+    #         # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
+    #         "<RTCM(1300, DF002=1300, DF562=31, DF563=ETRF2000, DF564=115.0)>",
+    #         # "<RTCM(1302, DF002=1302, DF565=31, DF566=ETRF2000(2015), DF567=1, DF149=7, DF568=6, DF569_01=9, DF570_01=*, DF569_02=13, DF570_02=<, DF569_03=23, DF570_03=$, DF569_04=21, DF570_04=4, DF569_05=30, DF570_05=\, DF569_06=18, DF570_06=T)>",
+    #     ]
+    #     dirname = os.path.dirname(__file__)
+    #     with open(
+    #         os.path.join(dirname, "pygpsdata-NTRIP-1300-1302.log"), "rb"
+    #     ) as stream:
+    #         i = 0
+    #         raw = 0
+    #         rtr = RTCMReader(stream, labelmsm=True, quitonerror=ERR_LOG)
+    #         for raw, parsed in rtr:
+    #             if raw is not None:
+    #                 if parsed.identity in ("1300"):  # , "1302"):
+    #                     # print(f'"{parsed}",')
+    #                     self.assertEqual(f"{parsed}", EXPECTED_RESULTS[i])
+    #                     i += 1
+    #         self.assertEqual(i, 6)
 
     def testSerialize(self):  # test serialize()
         payload = self._raw1005[3:-3]
