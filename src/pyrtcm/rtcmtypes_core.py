@@ -683,6 +683,7 @@ RTCM_DATA_FIELDS = {
     "DF575": (UINT, 20, 1, "QZSS Residuals Epoch Time TOW"),
     "DF576": (UINT, 5, 0, "QZSS Number of Satellite Signals Processed"),
     "ExtSatInfo": (UINT, 4, 0, "Extended Satellite Information"),
+
     # Quectel Proprietary RTCM3 messages
     "DF01P": (UINT, 8, 0, "Timing/PPS Status"),
     "DF02P": (UINT, 8, 0, "Subtype ID"),
@@ -695,7 +696,9 @@ RTCM_DATA_FIELDS = {
     "DF27P": (UINT, 32, 0, "Configuration Words"),
     "DF28P": (UINT, 4, 0, "GPS Quality Indicator (Fix Status)"),
     "DF29P": (UINT, 8, 0, "Number of Satellites in Use"),
-    "DF30P": (UINT, 8, 0.1, "Dilution of Precision (DOP)"),
+    "DF30P_HDOP": (UINT, 8, 0.1, "HorizontalDilution of Precision (HDOP)"),
+    "DF30P_VDOP": (UINT, 8, 0.1, "Vertical Dilution of Precision (VDOP)"),
+    "DF30P_PDOP": (UINT, 8, 0.1, "Position Dilution of Precision (PDOP)"),
     "DF31P": (INT, 15, 0.01, "Geoidal Separation, Meters"),
     "DF32P": (INT, 24, 1, "Age of Differentials"),
     "DF33P": (UINT, 12, 0, "Differential Reference Station ID"),
@@ -731,6 +734,27 @@ RTCM_DATA_FIELDS = {
     "DF107P": (UINT, 1, 0, "Reverse"),
     "DF112P": (UINT, 2, 0, "Config. Block"),
     "DF113P": (UINT, 5, 0, "Time Best Satellite Type"),
+
+    "DF_Safety": (UINT, 1, 0, "Safety Information (0 = Not available, 1 = Available)"),
+    "DF_ProtocolVersion": (UINT, 3, 0, "Protocol Version Flags (RTCM 3.3 = 3)"),
+    "Reserved": (UINT, 8, 0, "Reserved for future use"),
+    "Reserved1": (UINT, 8, 0, "Reserved for future use"),
+    "Reserved2": (UINT, 8, 0, "Reserved for future use"),
+    "Reserved3": (UINT, 8, 0, "Reserved for future use"),
+    "Reserved4": (UINT, 8, 0, "Reserved for future use"),
+    "NCO_ClockDrift": (UINT, 32, 0, "NCO Clock Drift"),
+    "Info": (UINT, 32, 0, "Quectel internal debugging data (format unspecified)"),
+    "DataStatus": (BIT, 1, 1, "Data Status (0 = Data valid, 1 = Navigation receiver warning)"),
+    "FixFrequencyMode": (BIT, 1, 1, "Fix Frequency Mode (0 = Single frequency, 1 = Multi-frequency)"),
+    "FixIntegrityRAIM": (BIT, 1, 1, "Fix Integrity RAIM (0 = Not checked, 1 = Checked)"),
+    "ProtectionLevelHorizontal": (UINT, 16, 0, "Protection Level Horizontal (0.01 m resolution, 0xFFFF = Invalid)"),
+    "ProtectionLevelVertical": (UINT, 16, 0, "Protection Level Vertical (0.01 m resolution, 0xFFFF = Invalid)"),
+    "ProtectionLevelAngle": (UINT, 16, 0, "Protection Level Angle (0.01 degree resolution, 0xFFFF = Invalid)"),
+    "ReceiverClockBias": (UINT, 32, 0, "Receiver Clock Bias (Unit: mm, 0x80000000 = Invalid)"),
+    "ReceiverClockDrift": (UINT, 32, 0, "Receiver Clock Drift (Unit: cm/s, 0x80000000 = Invalid)"),
+    "FirmwareVersionDataLength": (UINT, 8, 0, "Firmware Version Data Length"),
+    "FirmwareVersionDataString": (UINT, 8, 0, "Firmware Version Data"),
+
     # IGS SSR data types, used in 4076 messages
     # https://files.igs.org/pub/data/format/igs_ssr_v1.pdf
     "IDF001": (UINT, 3, 1, "IGM/IM Version"),
