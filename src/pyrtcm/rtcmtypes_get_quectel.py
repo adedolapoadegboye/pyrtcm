@@ -142,39 +142,12 @@ Q999_026 = {
 Q999_064 = {
     "DF002": "RTCM Message Number",  # Always 999 for proprietary messages
     "DF02P": "Subtype ID",  # 64 for SENS
-    "NumFrameEntries": "Number of Frame Entries (Defines how many sensor data fields follow)",
-    "FrameEntries": (  # Repeating sensor frame entries based on sensor type
-        "NumFrameEntries",
-        {
-            "DF71P": "Sensor Type (0x00 = Common, 0x03 = Odometer, 0x1E = Accelerometer, 0x1F = Gyroscope)",
-            "DF64P": "CPU Timestamp (977.5171 ns per step)",
-            "SensorSpecific": (
-                "DF71P",
-                {
-                    "0x00": {  # Sensor Common Frame
-                        "SensorTypeLength": "Sensor Type Length (4-bit per step, 8 steps total)",
-                        "SensorCommonVersion": "Sensor Common Version (0 = Version 0, 1-3 = RFU)",
-                        "DF004": "GPS Epoch Time (TOW, best time converted to GPS system time)",
-                    },
-                    "0x03": {  # Odometer - Reverse Frame
-                        "DF106P": "Odometer Count (Unsigned, represents distance traveled)",
-                        "DF107P": "Reverse Status (0 = Forward, 1 = Reverse)",
-                    },
-                    "0x1E": {  # Accelerometer Frame
-                        "DF65P": "Acc Raw X (Raw X-axis acceleration, ±2 g full scale)",
-                        "DF66P": "Acc Raw Y (Raw Y-axis acceleration, ±2 g full scale)",
-                        "DF67P": "Acc Raw Z (Raw Z-axis acceleration, ±2 g full scale)",
-                    },
-                    "0x1F": {  # Gyroscope Frame
-                        "DF68P": "Gyro Raw X (Raw X-axis angular rate, ±125 dps full scale)",
-                        "DF69P": "Gyro Raw Y (Raw Y-axis angular rate, ±125 dps full scale)",
-                        "DF70P": "Gyro Raw Z (Raw Z-axis angular rate, ±125 dps full scale)",
-                    },
-                },
-            ),
-        },
-    ),
+    "NumberOfFrameEntries": "Number of Frame Entries (Defines how many sensor data fields follow)",  # Min 1, Max 4
+    "FrameEntries": "Frame Entry"
 }
+
+
+
 
 
 # *************************************************************

@@ -729,7 +729,6 @@ RTCM_DATA_FIELDS = {
     "DF86P": (UINT, 8, 0, "Tracking Mode"),
     "DF87P": (UINT, 4, 0, "Time Validity"),
     "DF95P": (UINT, 32, 0, "GNSS Constellation Mask"),
-    "DF95P_2": (UINT, 32, 0, "GNSS Constellation Mask"),
     "DF96P": (UINT, 32, 0, "GNSS Multi-Frequency Constellation Mask"),
     "DF106P": (UINT, 32, 0, "Odometer"),
     "DF107P": (UINT, 1, 0, "Reverse"),

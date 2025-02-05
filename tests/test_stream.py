@@ -300,7 +300,7 @@ class StreamTest(unittest.TestCase):
                     print(f'"{parsed}",')
                     # self.assertEqual(f"{parsed}", EXPECTED_RESULTS[i])
                     i += 1
-            self.assertEqual(i, 211)
+            self.assertEqual(i, 1618)
 
     # def test13001302(
     #     self,
